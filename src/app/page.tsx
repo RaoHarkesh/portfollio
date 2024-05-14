@@ -46,9 +46,9 @@ export default function Home() {
     <source src="/home-video.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
   </video>        <div className="text-[50px]">
-          <span className="text-white">Hello, I'm </span><span className="text-[#D20062]">Harkesh Yadav,</span>
+          <span className="text-white">{`Hello, I'm`} </span><span className="text-[#D20062]">Harkesh Yadav,</span>
           <br />
-          <p className="text-white">I'm a Software Engineer</p>
+          <p className="text-white">{`I'm a Software Engineer`}</p>
         </div>
         <div onMouseEnter={() => setWorkHover(true)} onMouseLeave={() => setWorkHover(false)} className="flex gap-[20px] border-white transition-all duration-500 hover:bg-[#0E8388] cursor-pointer hover:border-[#0E8388] border-[2px] py-[10px] px-[20px] mt-[40px] text-white text-[32px]">
           {'View my work '}<div className={`transition-all duration-500 ${workHover && 'rotate-z-90'}`}>{'->'}</div>
@@ -67,11 +67,11 @@ export default function Home() {
         <div className="flex justify-center items-center px-[100px]">
           <div className="flex justify-center items-center flex-col">
             <img className="max-w-[300px] object-cover mb-[30px] rounded-[12px]" src="/profile-pic.jpg" />
-            <h3 className="text-[#616161] font-[600] text-center text-[24px] mb-[20px]">Who's this guy?</h3>
-            <p className="text-[#616161] text-[18px] text-center leading-loose">I'm a Software Engineer for Gamemano Pvt. Ltd. in Noida, India.
-              I have serious passion for Software development, problem solving and creating intuitive, dynamic user experiences.</p>
+            <h3 className="text-[#616161] font-[600] text-center text-[24px] mb-[20px]">{`Who's this guy?`}</h3>
+            <p className="text-[#616161] text-[18px] text-center leading-loose">{`I'm a Software Engineer for Gamemano Pvt. Ltd. in Noida, India.
+              I have serious passion for Software development, problem solving and creating intuitive, dynamic user experiences.`}</p>
             <br />
-            <p className="text-[#009ada] text-[18px] cursor-pointer hover:underline">Let's make something technical and special</p>
+            <p className="text-[#009ada] text-[18px] cursor-pointer hover:underline">{`Let's make something technical and special`}</p>
           </div>
         </div>
         <div className="pr-[100px]">
