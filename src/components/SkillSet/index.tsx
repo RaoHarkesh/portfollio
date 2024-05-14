@@ -21,13 +21,13 @@ const SkillSet = ({items}: SkillProps) => {
             });
         });
 
-            observer.observe(hexagonRef.current);
+        hexagonRef.current && observer.observe(hexagonRef.current);
 
         return () => observer.disconnect();
     }, []);
     return <div className="w-full flex flex-col gap-[20px]" ref={hexagonRef}>
         {items.map((item)=> {
-            return <div className="w-full relative h-[30px] bg-[#eee]">
+            return <div key={item.title} className="w-full relative h-[30px] bg-[#eee]">
                 {animate && <div className={`bg-[#00a1a7] h-full ${animate && `width-animate-${item.point}`}`} />}
                 <div className="absolute bg-[#04c2c9] h-full px-[10px] top-0 left-0 text-white capitalize">{item.title}</div>
             </div>
