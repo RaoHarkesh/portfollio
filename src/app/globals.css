@@ -16,18 +16,113 @@
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+body {}
+
+.rotate-z-90 {
+  transform: rotateZ(90deg);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(0.5);
   }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rightToLeft {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes rightToLeftDelay {
+  0% {
+    transform: translateX(300px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes width90Animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 90%;
+  }
+}
+
+@keyframes width80Animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 80%;
+  }
+}
+
+@keyframes width70Animation {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 70%;
+  }
+}
+
+.width-animate-90 {
+  animation: width90Animation 2s ease-in-out forwards;
+}
+
+.width-animate-80 {
+  animation: width80Animation 2s ease-in-out forwards;
+}
+
+.width-animate-70 {
+  animation: width70Animation 2s ease-in-out forwards;
+}
+
+.popout-animate {
+  animation: scaleAnimation 1s ease-in-out;
+}
+
+.opacity-animate {
+  animation: opacityAnimation 1s ease-in-out;
+}
+
+.right-to-left-animate {
+  animation: rightToLeft 1s ease-in-out;
+}
+
+.right-to-left-animate-delay {
+  animation: rightToLeft 1.5s ease-in-out;
+}
+
+.white-grad {
+  background-image: linear-gradient(to top,
+    rgba(255, 255, 255, 1) 0%,       /* Dense white at the bottom */
+    rgba(255, 255, 255, 0.9) 20%,    /* Semi-opaque white */
+    rgba(255, 255, 255, 0.7) 40%,    /* More transparent white */
+    rgba(255, 255, 255, 0.5) 60%,    /* Even more transparent white */
+    rgba(255, 255, 255, 0.3) 80%,    /* Very transparent white */
+    rgba(255, 255, 255, 0) 100%      /* Fully transparent white at the top */
+  );
 }
