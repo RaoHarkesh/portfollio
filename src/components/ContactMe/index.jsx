@@ -34,8 +34,8 @@ const ContactMe = () => {
                     /* and other goodies */
                 }) => (
                     <>
-                    <h3 className='py-[40px] text-[22px] text-[#04c2c9]'>Have a question or want to work together?</h3>
-                    <form onSubmit={handleSubmit} className='flex text-[18px] flex-col gap-1 w-[600px]'>
+                    <h3 className='text-center py-[40px] text-[22px] text-[#04c2c9]'>Have a question or want to work together?</h3>
+                    <form onSubmit={handleSubmit} className='flex text-[18px] flex-col gap-1 xl:w-[600px]'>
                         <input
                             type="text"
                             placeholder='Name'

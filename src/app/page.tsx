@@ -12,9 +12,12 @@ export default function Home() {
   const [contactAnimate, setContactAnimate] = useState<boolean>(false)
   const projectHead = useRef(null);
   const contactHead = useRef(null);
+  const aboutRef = useRef<any>(null)
+  const projectRef = useRef<any>(null)
+  const contactRef = useRef<any>(null)
 
   useEffect(() => {
-   
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -34,36 +37,40 @@ export default function Home() {
 
 
 
-    return () =>{
+    return () => {
       observer.disconnect();
       contactObserver.disconnect();
-    } 
+    }
   }, []);
   return (
     <div>
       <div className="w-full h-[100dvh] relative bg-[#222831] flex flex-col justify-center items-center">
-      <video className="w-full object-cover h-full opacity-20 pointer-events-none z-[1] absolute top-0 left-0" autoPlay loop muted>
-    <source src="/home-video.mp4" type="video/mp4"/>
-    Your browser does not support the video tag.
-  </video>        <div className="text-[50px]">
+        <video className="w-full object-cover h-full opacity-20 pointer-events-none z-[1] absolute top-0 left-0" autoPlay loop muted>
+          <source src="/home-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="text-[35px] xl:text-[50px]">
           <span className="text-white">{`Hello, I'm`} </span><span className="text-[#D20062]">Harkesh Yadav,</span>
           <br />
           <p className="text-white">{`I'm a Software Engineer`}</p>
         </div>
-        <div onMouseEnter={() => setWorkHover(true)} onMouseLeave={() => setWorkHover(false)} className="flex gap-[20px] border-white transition-all duration-500 hover:bg-[#0E8388] cursor-pointer hover:border-[#0E8388] border-[2px] py-[10px] px-[20px] mt-[40px] text-white text-[32px]">
+        <div onClick={() => {
+          if (aboutRef.current)
+            aboutRef.current.scrollIntoView({ behavior: 'smooth' })
+        }} onMouseEnter={() => setWorkHover(true)} onMouseLeave={() => setWorkHover(false)} className="flex gap-[20px] border-white transition-all duration-500 hover:bg-[#0E8388] cursor-pointer hover:border-[#0E8388] border-[2px] py-[10px] px-[20px] mt-[40px] text-white text-[32px]">
           {'View my work '}<div className={`transition-all duration-500 ${workHover && 'rotate-z-90'}`}>{'->'}</div>
         </div>
       </div>
-      <Navbar items={['home', 'about']} />
-      <h1 className="uppercase pt-[100px] text-[50px] text-center font-[600]">About</h1>
+      <Navbar aboutRef={aboutRef} contactRef={contactRef} projectRef={projectRef} items={['home', 'about', 'project', 'contact']} />
+      <h1 ref={aboutRef} className="uppercase pt-[100px] text-[35px] xl:text-[50px] text-center font-[600]">About</h1>
       <div className="w-[100px] h-[6px] bg-black mx-auto rounded-full"></div>
-      <div className="grid grid-cols-4 py-[100px]">
+      <div className="grid gap-14 grid-cols-2 xl:grid-cols-4 py-[100px]">
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="fast" subheadline="Fast load times and lag free interaction, my highest priority."><img src="/speed.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="responsive" subheadline="My layouts will work on any device, big or small."><img src="/responsive.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="intuitive" subheadline="Strong preference for easy to use, intuitive UX/UI."><img src="/bulb.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="dynamic" subheadline="Strong preference for easy to use, intuitive UX/UI."><img src="/rocket.png" /></Hexagon></div>
       </div>
-      <div className="grid grid-cols-2 pb-[100px]">
+      <div className="grid grid-cols-1 xl:grid-cols-2 pb-[100px]">
         <div className="flex justify-center items-center px-[100px]">
           <div className="flex justify-center items-center flex-col">
             <img className="max-w-[300px] object-cover mb-[30px] rounded-[12px]" src="/profile-pic.jpg" />
@@ -74,30 +81,31 @@ export default function Home() {
             <p className="text-[#009ada] text-[18px] cursor-pointer hover:underline">{`Let's make something technical and special`}</p>
           </div>
         </div>
-        <div className="pr-[100px]">
+        <div className="pt-[50px] xl:pt-0 xl:pr-[100px]">
           <SkillSet items={[{ title: 'Javascript', point: 90 }, { title: 'Typescript', point: 90 }, { title: 'Java', point: 80 }, { title: 'ReactJs', point: 90 }, { title: 'NextJS', point: 80 }, { title: 'NodeJs', point: 80 }, { title: 'Redux', point: 80 }, { title: 'HTML', point: 80 }, { title: 'CSS', point: 80 }, { title: 'Ant Design', point: 80 }, { title: 'Tailwind CSS', point: 80 }, { title: 'Data Structures and Algorithms', point: 80 }]} />
         </div>
       </div>
-      <div className="w-full pt-[100px] bg-[#f5f5f5] pb-[100px]">
+      <div ref={projectRef} className="w-full pt-[50px]  xl:pt-[100px] bg-[#f5f5f5] pb-[100px]">
         {animate && <div className="flex flex-col items-center ">
-          <h1 className={`w-fit uppercase text-[50px] text-center font-[600] ${animate && 'right-to-left-animate'}`}>Projects</h1>
+          <h1 className={`w-fit uppercase text-[35px] xl:text-[50px] text-center font-[600] ${animate && 'right-to-left-animate'}`}>Projects</h1>
           <div className={`w-[100px] h-[6px] bg-black mx-auto rounded-full ${animate && 'right-to-left-animate-delay'} `}></div>
-          <div className="pt-[100px]">
+          <div className="pt-[50px] xl:pt-[100px] w-full">
             <FilterMyProject images={[{ src: '/p-excel.jpeg', type: 'Javascript', name: "Excel clone", tech: 'Javascript' }, { src: '/p-auto.avif', type: 'Automation', name: 'Gmail Automation', tech: 'Puppeteer / Javascript' }, { src: '/p-webapp.png', type: 'React', name: 'Web Apps and Dashboards', tech: 'ReactJs / HTML / CSS' }, { src: '/p-nextjs.png', type: 'Nextjs', name: 'Next Applications', tech: 'NextJs Framework' }]} filters={['All', 'React', 'Nextjs', 'Javascript', 'Automation']} />
           </div>
         </div>}
 
         <div ref={projectHead} className="h-1" />
+        <div ref={contactRef} />
       </div>
 
-      <div className='w-full py-[100px] bg-[#252934]'>
-      {contactAnimate && <div className="flex flex-col items-center ">
-          <h1 className={`w-fit uppercase text-[50px] text-center text-white font-[600] ${contactAnimate && 'right-to-left-animate'}`}>Contact</h1>
+      <div className='w-full  py-[50px] xl:py-[100px] bg-[#252934]'>
+        {contactAnimate && <div className="flex flex-col items-center ">
+          <h1 className={`w-fit uppercase text-[35px] xl:text-[50px] text-center text-white font-[600] ${contactAnimate && 'right-to-left-animate'}`}>Contact</h1>
           <div className={`w-[100px] h-[6px] bg-white mx-auto rounded-full ${contactAnimate && 'right-to-left-animate-delay'} `}></div>
         </div>}
         <div ref={contactHead} className="h-1" />
         <div className="flex justify-center flex-col items-center">
-        <ContactMe/>
+          <ContactMe />
         </div>
       </div>
     </div>
