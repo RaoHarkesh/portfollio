@@ -16,7 +16,7 @@ const FilterMyProject = ({ filters, images }: FilterProjectProps) => {
     return (
         <div className="w-full">
             <div className="flex justify-center items-center w-full">
-                <div className={`flex xl:grid xl:grid-cols-5 gap-4 w-full xl:w-fit overflow-scroll`}>
+                <div className={`flex xl:grid xl:grid-cols-5 gap-4 w-full xl:w-fit overflow-auto`}>
                     {filters.map((filter,idx) => <div key={filter} onClick={()=>setActive({id: idx, type: filter})} className={`${active.id === idx ? 'text-white bg-[#D20062]' : 'text-black'} p-[10px] w-fit p-10px cursor-pointer transition-all duration-500 text-[22px] uppercase`}>{filter}</div>
                     )}
                 </div>

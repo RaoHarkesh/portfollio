@@ -25,7 +25,7 @@ const SkillSet = ({items}: SkillProps) => {
 
         return () => observer.disconnect();
     }, []);
-    return <div className="w-full flex flex-col gap-[20px]" ref={hexagonRef}>
+    return <div className="px-[10px] xl:px-0 w-full flex flex-col gap-[20px]" ref={hexagonRef}>
         {items.map((item)=> {
             return <div key={item.title} className="w-full relative h-[30px] bg-[#eee]">
                 {animate && <div className={`bg-[#00a1a7] h-full ${animate && `width-animate-${item.point}`}`} />}

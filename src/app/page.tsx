@@ -49,7 +49,7 @@ export default function Home() {
           <source src="/home-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="text-[35px] xl:text-[50px]">
+        <div className="px-[10px] xl:px-0 text-[28px] xl:text-[50px]">
           <span className="text-white">{`Hello, I'm`} </span><span className="text-[#D20062]">Harkesh Yadav,</span>
           <br />
           <p className="text-white">{`I'm a Software Engineer`}</p>
@@ -57,14 +57,14 @@ export default function Home() {
         <div onClick={() => {
           if (aboutRef.current)
             aboutRef.current.scrollIntoView({ behavior: 'smooth' })
-        }} onMouseEnter={() => setWorkHover(true)} onMouseLeave={() => setWorkHover(false)} className="flex gap-[20px] border-white transition-all duration-500 hover:bg-[#0E8388] cursor-pointer hover:border-[#0E8388] border-[2px] py-[10px] px-[20px] mt-[40px] text-white text-[32px]">
+        }} onMouseEnter={() => setWorkHover(true)} onMouseLeave={() => setWorkHover(false)} className="flex gap-[20px] border-white transition-all duration-500 hover:bg-[#0E8388] cursor-pointer hover:border-[#0E8388] border-[2px] py-[10px] px-[15px] xl:px-[20px] mt-[40px] text-white text-[28px] xl:text-[32px]">
           {'View my work '}<div className={`transition-all duration-500 ${workHover && 'rotate-z-90'}`}>{'->'}</div>
         </div>
       </div>
       <Navbar aboutRef={aboutRef} contactRef={contactRef} projectRef={projectRef} items={['home', 'about', 'project', 'contact']} />
       <h1 ref={aboutRef} className="uppercase pt-[100px] text-[35px] xl:text-[50px] text-center font-[600]">About</h1>
       <div className="w-[100px] h-[6px] bg-black mx-auto rounded-full"></div>
-      <div className="grid gap-14 grid-cols-2 xl:grid-cols-4 py-[100px]">
+      <div className="px-[10px] xl:px-[0] grid gap-14 grid-cols-2 xl:grid-cols-4 py-[100px]">
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="fast" subheadline="Fast load times and lag free interaction, my highest priority."><img src="/speed.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="responsive" subheadline="My layouts will work on any device, big or small."><img src="/responsive.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="intuitive" subheadline="Strong preference for easy to use, intuitive UX/UI."><img src="/bulb.png" /></Hexagon></div>
