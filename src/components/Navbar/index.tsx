@@ -5,9 +5,10 @@ interface NavProps {
     aboutRef: any;
     contactRef: any;
     projectRef: any;
+    skillRef: any
 }
 
-const Navbar = ({items, aboutRef, contactRef, projectRef}: NavProps) => {
+const Navbar = ({items, aboutRef, contactRef, projectRef, skillRef}: NavProps) => {
     const [active, setActive] = useState<boolean>(false)
     const handleClick = (item: string) => {
         switch(item) {
@@ -20,6 +21,9 @@ const Navbar = ({items, aboutRef, contactRef, projectRef}: NavProps) => {
                 break;
             case 'about':
                 aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+                break;
+            case 'skillset':
+                    skillRef.current.scrollIntoView({ behavior: 'smooth' });
                 break;
             case 'project':
                 projectRef.current.scrollIntoView({ behavior: 'smooth' });

@@ -5,17 +5,22 @@ import Navbar from "@/components/Navbar";
 import SkillSet from "@/components/SkillSet";
 import ContactMe from "@/components/ContactMe"
 import { useEffect, useRef, useState } from "react";
+import { ResumeButton } from "@/components/Buttons/button";
 
 export default function Home() {
   const [workHover, setWorkHover] = useState<boolean>(false)
   const [animate, setAnimate] = useState<boolean>(false)
   const [contactAnimate, setContactAnimate] = useState<boolean>(false)
+  const [skillAnimate, setSkillAnimate] = useState<boolean>(false)
+  const [aboutAnimate, setAboutAnimate] = useState<boolean>(false)
   const projectHead = useRef(null);
+  const skillRef = useRef<any>(null)
+  const skillHead = useRef<any>(null)
   const contactHead = useRef(null);
+  const aboutHead = useRef<any>(null)
   const aboutRef = useRef<any>(null)
   const projectRef = useRef<any>(null)
   const contactRef = useRef<any>(null)
-
   useEffect(() => {
 
     const observer = new IntersectionObserver(entries => {
@@ -32,18 +37,37 @@ export default function Home() {
         }
       });
     });
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setSkillAnimate(true)
+        }
+      });
+    });
+    const aboutObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setAboutAnimate(true)
+        }
+      });
+    });
     projectHead.current && observer.observe(projectHead.current);
     contactHead.current && contactObserver.observe(contactHead.current);
+    skillHead.current && skillObserver.observe(skillHead.current);
+    aboutHead.current && aboutObserver.observe(aboutHead.current);
 
 
 
     return () => {
       observer.disconnect();
       contactObserver.disconnect();
+      skillObserver.disconnect();
+      aboutObserver.disconnect();
     }
   }, []);
   return (
     <div>
+      <ResumeButton label="View Resume" />
       <div className="w-full h-[100dvh] relative bg-[#222831] flex flex-col justify-center items-center">
         <video className="w-full object-cover h-full opacity-20 pointer-events-none z-[1] absolute top-0 left-0" autoPlay loop muted>
           <source src="/home-video.mp4" type="video/mp4" />
@@ -61,15 +85,26 @@ export default function Home() {
           {'View my work '}<div className={`transition-all duration-500 ${workHover && 'rotate-z-90'}`}>{'->'}</div>
         </div>
       </div>
-      <Navbar aboutRef={aboutRef} contactRef={contactRef} projectRef={projectRef} items={['home', 'about', 'project', 'contact']} />
-      <h1 ref={aboutRef} className="uppercase pt-[100px] text-[35px] xl:text-[50px] text-center font-[600]">About</h1>
-      <div className="w-[100px] h-[6px] bg-black mx-auto rounded-full"></div>
-      <div className="px-[10px] xl:px-[0] grid gap-14 grid-cols-2 xl:grid-cols-4 py-[100px]">
+      <Navbar skillRef={skillRef} aboutRef={aboutRef} contactRef={contactRef} projectRef={projectRef} items={['home', 'about', 'skillset', 'project', 'contact']} />
+      
+      <div className="mb-[100px]" ref={aboutRef} />
+      <div className="h-1" ref={aboutHead} />
+      {aboutAnimate && <div className="flex flex-col items-center ">
+        <h1 className={`w-fit uppercase text-[35px] xl:text-[50px] text-center font-[600] ${aboutAnimate && 'right-to-left-animate'}`}>About</h1>
+        <div className={`w-[100px] h-[6px] bg-black mx-auto rounded-full ${aboutAnimate && 'right-to-left-animate-delay'} `}></div>
+      </div>}
+      <div className="px-[10px] xl:px-[0] grid gap-14 grid-cols-2 xl:grid-cols-4 pt-[100px]">
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="fast" subheadline="Fast load times and lag free interaction, my highest priority."><img src="/speed.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="responsive" subheadline="My layouts will work on any device, big or small."><img src="/responsive.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="intuitive" subheadline="Strong preference for easy to use, intuitive UX/UI."><img src="/bulb.png" /></Hexagon></div>
         <div className="flex px-[10px] justify-center items-center"><Hexagon headline="dynamic" subheadline="Strong preference for easy to use, intuitive UX/UI."><img src="/rocket.png" /></Hexagon></div>
       </div>
+      <div className="mb-[100px]" ref={skillRef} />
+      {skillAnimate && <div className="flex flex-col items-center ">
+        <h1 className={`w-fit uppercase text-[35px] xl:text-[50px] text-center font-[600] ${skillAnimate && 'right-to-left-animate'}`}>Skillset</h1>
+        <div className={`w-[100px] h-[6px] bg-black mx-auto rounded-full ${skillAnimate && 'right-to-left-animate-delay'} `}></div>
+      </div>}
+      <div ref={skillHead} className="h-1 mt-[50px]" />
       <div className="grid grid-cols-1 xl:grid-cols-2 pb-[100px]">
         <div className="flex justify-center items-center px-[100px]">
           <div className="flex justify-center items-center flex-col">

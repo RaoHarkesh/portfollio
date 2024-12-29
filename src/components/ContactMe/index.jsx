@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Formik } from 'formik';
+import axios from '@/utils/axiosInstance'
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,18 +17,10 @@ const ContactMe = () => {
     });
     const sendMailData = async (values) => {
         try {
-            const response = await fetch('https://protfolio-backend.netlify.app/.netlify/functions/server/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message);
-            }
-            const data = await response.json()
+            const response = await axios.post('/send-email', 
+               JSON.stringify(values),
+            );
+            const data = response.data
             toast.success(data.message);
         }
         catch (error) {
